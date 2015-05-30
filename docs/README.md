@@ -1,11 +1,8 @@
 # Application Documentation
 
-## Getting Started
+## Code Generation
 
-## Customize
-
-## Develop
-
-## Deploy
-
-## Support
+```
+./yii gii-tools-batch --tables=user --doCrud=0
+./yii gii-tools-batch --tables=job,package
+```
