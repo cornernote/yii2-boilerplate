@@ -49,7 +49,10 @@ $config = [
                 ],
             ],
         ],
-
+        'workflowSource' => [
+            'class' => 'raoul2000\workflow\source\php\WorkflowPhpSource',
+            'namespace' => 'app\models\workflow',
+        ],
     ],
     'modules' => [
         'admin' => [
