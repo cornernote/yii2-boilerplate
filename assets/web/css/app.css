@@ -1,0 +1,23 @@
+/**
+ * Labels
+ */
+
+.label-type-pickup {
+    background-color: #3038b1;
+}
+
+.label-type-delivery {
+    background-color: #a837a8;
+}
+
+.label-status-requested {
+    background-color: #0c6b18;
+}
+
+.label-status-scheduled {
+    background-color: #e38617;
+}
+
+.label-status-delivered {
+    background-color: #c2190f;
+}
