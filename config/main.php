@@ -49,10 +49,6 @@ $config = [
                 ],
             ],
         ],
-        'workflowSource' => [
-            'class' => 'raoul2000\workflow\source\php\WorkflowPhpSource',
-            'namespace' => 'app\models\workflow',
-        ],
     ],
     'modules' => [
         'admin' => [
@@ -86,7 +82,9 @@ $config = [
         'adminEmail' => getenv('APP_ADMIN_EMAIL'),
         'supportEmail' => getenv('APP_SUPPORT_EMAIL'),
         'yii.migrations' => [
+            '@cornernote/audit/migrations',
             '@dektrium/user/migrations',
+            '@yii/rbac/migrations',
         ]
     ]
 
