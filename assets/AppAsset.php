@@ -24,7 +24,7 @@ class AppAsset extends AssetBundle
         'css/app.css',
     ];
     public $js = [
-        'js/modal_remote.js',
+        'js/modal.js',
         'js/app.js',
     ];
     public $depends = [
