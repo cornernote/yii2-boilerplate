@@ -47,7 +47,7 @@ class ModalRemote extends Widget
      */
     public function run()
     {
-        JavaScript::begin();
+        JavaScript::begin(['id' => 'modal-remote']);
         ?>
         <script>
             $(document).on('click', '[data-toggle="modal-remote"]', function (e) {
