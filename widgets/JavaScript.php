@@ -2,10 +2,11 @@
 
 namespace app\widgets;
 
+use yii\bootstrap\Widget;
 use yii\web\View;
 
 /**
- * JavaScriptWidget
+ * JavaScript
  *
  * @author Brett O'Donnell <cornernote@gmail.com>
  * @copyright 2015 Mr PHP
@@ -22,7 +23,7 @@ use yii\web\View;
  *
  * @package dressing.widgets
  */
-class JavaScript extends \yii\bootstrap\Widget
+class JavaScript extends Widget
 {
     /**
      * @var
@@ -50,13 +51,8 @@ class JavaScript extends \yii\bootstrap\Widget
         // get contents
         $js = ob_get_clean();
         $js = str_replace(array('<script>', '<script type="text/javascript">', '</script>'), '', $js);
-        //just echo the script
-        if ($this->position == -1) {
-            echo $js;
-        } else {
-            // register the js script
-            $this->getView()->registerJs($js . ';', $this->position, $this->id);
-        }
+        // register the js script
+        $this->getView()->registerJs($js . ';', $this->position, $this->id);
 
     }
 }
