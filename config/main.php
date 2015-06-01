@@ -131,6 +131,16 @@ $console = [
     'controllerNamespace' => 'app\commands',
     'controllerMap' => [
         'migrate' => 'dmstr\console\controllers\MigrateController'
+        'fixture' => [
+            'class' => 'yii\console\controllers\FixtureController',
+            'namespace' => 'app\tests\codeception\fixtures',
+        ],
+        'faker' => [
+            'class' => 'yii\faker\FixtureController',
+            'namespace' => 'app\tests\codeception\fixtures',
+            'templatePath' => '@app/tests/codeception/fixtures/templates',
+            'fixtureDataPath' => '@app/tests/codeception/fixtures/data',
+        ],
     ],
     'components' => [
         'log' => [
