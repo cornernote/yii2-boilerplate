@@ -1,12 +1,12 @@
 /**
- * Modal Remote Links
+ * Modal Remote
  *
  * usage:
  * ```
- * <a href="<?php echo Url::to(['/']); ?>" class="modal">click me</a>
+ * <a href="<?php echo Url::to(['/']); ?>" class="modal-remote">click me</a>
  * ```
  */
-$(document).on('click', '.modal', function (e) {
+$(document).on('click', '.modal-remote', function (e) {
     e.preventDefault();
     var $modalRemote = $('#modal-remote'),
         url = $(this).attr('href');
