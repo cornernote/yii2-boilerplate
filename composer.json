@@ -66,9 +66,7 @@
     "cebe/markdown-latex": "dev-master"
   },
   "repositories": [
-    {"type": "vcs", "url": "git@bitbucket.org:cornernote/yii2-ace-admin.git"},
-    {"type": "vcs", "url": "git@github.com:cornernote/yii2-gii-tools.git"},
-    {"type": "vcs", "url": "git@github.com:cornernote/yii2-softdelete.git"}
+    {"type": "vcs", "url": "git@bitbucket.org:cornernote/yii2-ace-admin.git"}
   ],
   "scripts": {
     "post-create-project-cmd": [
