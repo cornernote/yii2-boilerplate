@@ -29,6 +29,6 @@ class AppAsset extends AssetBundle
     ];
     public $depends = [
         'yii\web\YiiAsset',
-        'cornernote\web\AceAsset',
+        'cornernote\aceadmin\web\AceAsset',
     ];
 }
