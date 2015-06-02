@@ -1,7 +1,7 @@
 <?php
 use app\assets\AppAsset;
 
-$viewSidebar = '@app/views/layouts/_sidebar';
+//$viewSidebar = '@app/views/layouts/_sidebar';
 
 AppAsset::register($this);
 
