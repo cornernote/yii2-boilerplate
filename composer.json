@@ -65,9 +65,6 @@
     "schmunk42/yii2-giiant": "dev-master",
     "cebe/markdown-latex": "dev-master"
   },
-  "repositories": [
-    {"type": "vcs", "url": "git@bitbucket.org:cornernote/yii2-ace-admin.git"}
-  ],
   "scripts": {
     "post-create-project-cmd": [
       "yii\\composer\\Installer::postCreateProject"
