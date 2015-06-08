@@ -54,7 +54,7 @@
             }
         }
 
-        $this->linkAll('tags', $tags, [], true, true);
+        $this->linkAll('tags', $tags);
         parent::afterSave($insert, $changedAttributes);
     }
 ```
