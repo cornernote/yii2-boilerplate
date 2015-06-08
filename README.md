@@ -36,7 +36,8 @@ Run the application setup...
 Install robo...
 
 ```
-composer global require codegyre/robo
+wget http://robo.li/robo.phar
+mv robo.phar /usr/local/bin/robo
 ```
 
 Start a webserver...
