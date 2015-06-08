@@ -13,27 +13,11 @@ use Yii;
 use yii\base\Model;
 use yii\db\ActiveRecord;
 
-/**
- * PostForm is the model behind the post form.
- *
- * @property Post $post
- * @property Advertiser $advertiser
- */
 class PostForm extends Model
 {
-    /**
-     * @var Post
-     */
     private $_post;
-
-    /**
-     * @var Advertiser
-     */
     private $_advertiser;
 
-    /**
-     * @inheritdoc
-     */
     public function rules()
     {
         return [
@@ -41,9 +25,6 @@ class PostForm extends Model
         ];
     }
 
-    /**
-     * @inheritdoc
-     */
     public function attributeLabels()
     {
         return [
@@ -51,9 +32,6 @@ class PostForm extends Model
         ];
     }
 
-    /**
-     * @return bool
-     */
     public function save()
     {
         if (!$this->post->save()) {
@@ -66,17 +44,11 @@ class PostForm extends Model
         return true;
     }
 
-    /**
-     * @return Post
-     */
     public function getPost()
     {
         return $this->_post;
     }
 
-    /**
-     * @param Post|array $post
-     */
     public function setPost($post)
     {
         if ($post instanceof ActiveRecord) {
@@ -86,9 +58,6 @@ class PostForm extends Model
         }
     }
 
-    /**
-     * @return Advertiser
-     */
     public function getAdvertiser()
     {
         if (!$this->_advertiser) {
@@ -101,17 +70,11 @@ class PostForm extends Model
         return $this->_advertiser;
     }
 
-    /**
-     * @param Advertiser|array $advertiser
-     */
     public function setAdvertiser($advertiser)
     {
         $this->advertiser->setAttributes($advertiser);
     }
 
-    /**
-     * @return array
-     */
     public function getAllModels()
     {
         return [
