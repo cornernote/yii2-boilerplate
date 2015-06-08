@@ -46,3 +46,10 @@ robo server --port=80 -t web/
 ```
 
 Open `http://path-to-app/web` or `http://path-to-app/web?r=admin` in your browser.
+
+Install psysh
+
+```
+wget psysh.org/psysh
+mv psysh /usr/local/bin/psysh
+```
