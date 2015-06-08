@@ -27,11 +27,15 @@ class PostForm extends Model
 
     public function save()
     {
+        // todo - validate
+        // todo - database transaction
         if (!$this->post->save()) {
+            // todo - rollback transaction
             return false;
         }
         $this->advertiser->post_id = $this->post->id;
         if (!$this->advertiser->save()) {
+            // todo - rollback transaction
             return false;
         }
         return true;
