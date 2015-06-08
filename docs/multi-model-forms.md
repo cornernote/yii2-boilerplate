@@ -25,13 +25,6 @@ class PostForm extends Model
         ];
     }
 
-    public function attributeLabels()
-    {
-        return [
-            'verifyCode' => 'Verification Code',
-        ];
-    }
-
     public function save()
     {
         if (!$this->post->save()) {
