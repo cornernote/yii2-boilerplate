@@ -32,5 +32,17 @@ Run the application setup...
 ```
 ./yii app/setup
 ```
-    
+
+Install robo...
+
+```
+composer global require codegyre/robo
+```
+
+Start a webserver...
+
+```
+robo server --port=80 -t web/
+```
+
 Open `http://path-to-app/web` or `http://path-to-app/web?r=admin` in your browser.
