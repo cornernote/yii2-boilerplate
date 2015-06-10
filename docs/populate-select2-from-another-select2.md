@@ -16,6 +16,18 @@
                 'select2:select' => 'function(e) { populateClientCode(e.params.data.id); populateClientProject(e.params.data.id); }',
             ],
         ]); ?>
+        
+        <?= $form->field($model, 'client_code_id')->widget(Select2::classname(), [
+            'name' => 'class_name',
+            'model' => $model,
+            'attribute' => 'client_code_id',
+            'data' => ArrayHelper::map(ClientCode::find()->andWhere(['client_id' => $model->client_id])->all(), 'client_code_id', 'label'),
+            'options' => [
+                'placeholder' => Yii::t('app', 'Type to autocomplete'),
+                'multiple' => false,
+            ]
+        ]); ?>
+
         <?php JavaScript::begin(); ?>
         <script>
             function populateClientCode(client_id) {
