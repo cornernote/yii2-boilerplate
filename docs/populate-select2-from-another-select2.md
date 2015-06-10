@@ -13,7 +13,7 @@
                 'multiple' => false,
             ],
             'pluginEvents' => [
-                'select2:select' => 'function(e) { populateClientCode(e.params.data.id); populateClientProject(e.params.data.id); }',
+                'select2:select' => 'function(e) { populateClientCode(e.params.data.id); }',
             ],
         ]); ?>
         
