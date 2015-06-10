@@ -25,9 +25,6 @@
 ```php
     public $tag_ids;
 
-    /**
-     * @inheritdoc
-     */
     public function scenarios()
     {
         return [
