@@ -26,6 +26,9 @@ $config = [
             'charset' => 'utf8',
             'tablePrefix' => getenv('DATABASE_TABLE_PREFIX'),
         ],
+        'formatter' => [
+            'dateFormat' => 'php:d/m/Y',
+        ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
             //'viewPath'         => '@common/mail',
