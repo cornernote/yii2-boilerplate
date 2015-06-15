@@ -54,7 +54,8 @@
     "cornernote/yii2-return-url": "dev-master",
     "cornernote/yii2-audit-module": "dev-master",
     "cornernote/yii2-softdelete": "dev-master",
-    "cornernote/yii2-linkall-behavior": "dev-master"
+    "cornernote/yii2-linkall-behavior": "dev-master",
+    "cornernote/yii2-shortcuts": "dev-master"
   },
   "require-dev": {
     "yiisoft/yii2-apidoc": "2.*",
