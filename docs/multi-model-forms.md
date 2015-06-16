@@ -142,4 +142,4 @@ Now in the form you can use your other models as follows
 
 Example using an array of other models (eg, Job hasMany Item - Job and dynamic number of Items in one form)
 
-(yii1 example)[https://gist.github.com/cornernote/5cf27e6aed383d3bb044]
+[yii1 example](https://gist.github.com/cornernote/5cf27e6aed383d3bb044)
