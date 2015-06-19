@@ -50,7 +50,7 @@
     "raoul2000/yii2-workflow": "*",
     "zhuravljov/yii2-datetime-widgets" : "*",
     "cornernote/yii2-ace": "dev-master",
-    "cornernote/yii2-gii-tools": "dev-master",
+    "cornernote/yii2-gii": "dev-master",
     "cornernote/yii2-return-url": "dev-master",
     "cornernote/yii2-audit": "dev-master",
     "cornernote/yii2-softdelete": "dev-master",
