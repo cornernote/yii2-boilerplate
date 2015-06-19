@@ -49,7 +49,7 @@
     "vova07/yii2-console-runner-extension": "*",
     "raoul2000/yii2-workflow": "*",
     "zhuravljov/yii2-datetime-widgets" : "*",
-    "cornernote/yii2-ace-admin": "dev-master",
+    "cornernote/yii2-ace": "dev-master",
     "cornernote/yii2-gii-tools": "dev-master",
     "cornernote/yii2-return-url": "dev-master",
     "cornernote/yii2-audit": "dev-master",
