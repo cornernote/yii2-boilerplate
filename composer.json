@@ -34,7 +34,6 @@
     "php": ">=5.4.0",
     "dektrium/yii2-user": "0.9.*",
     "dektrium/yii2-rbac": "dev-master",
-    "dmstr/yii2-adminlte-asset": "2.*@dev",
     "dmstr/yii2-app-command": "@stable",
     "dmstr/yii2-log": "@stable",
     "dmstr/yii2-migrate-command": "@stable",
