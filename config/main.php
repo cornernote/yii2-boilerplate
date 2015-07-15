@@ -41,7 +41,12 @@ $config = [
             'enablePrettyUrl' => getenv('APP_PRETTY_URLS') ? true : false,
             'showScriptName' => getenv('YII_ENV_TEST') ? true : false,
             'rules' => [
-                'docs/<file:[a-zA-Z0-9_\-\.]*>' => 'docs',
+                '<module:[\w\-]+>/<controller:[\w\-]+>/<id:\d+>' => '<module>/<controller>/view',
+                '<module:[\w\-]+>/<controller:[\w\-]+>/<action:[\w\-]+>/<id:\d+>' => '<module>/<controller>/<action>',
+                '<module:[\w\-]+>/<controller:[\w\-]+>/<action:[\w\-]+>' => '<module>/<controller>/<action>',
+                '<controller:[\w\-]+>/<id:\d+>' => '<controller>/view',
+                '<controller:[\w\-]+>/<action:[\w\-]+>/<id:\d+>' => '<controller>/<action>',
+                '<controller:[\w\-]+>/<action:[\w\-]+>' => '<controller>/<action>',
             ],
         ],
         'view' => [
@@ -197,13 +202,13 @@ if (YII_ENV_DEV) {
             'giiant-model' => [
                 'class' => 'schmunk42\giiant\model\Generator',
                 'templates' => [
-                    'gii-tools' => '@vendor/cornernote/yii2-gii-tools/giiant/model/gii-tools',
+                    'gii-tools' => '@vendor/cornernote/yii2-gii/src/giiant/model/gii-tools',
                 ],
             ],
             'giiant-crud' => [
                 'class' => 'schmunk42\giiant\crud\Generator',
                 'templates' => [
-                    'gii-tools' => '@vendor/cornernote/yii2-gii-tools/giiant/crud/gii-tools',
+                    'gii-tools' => '@vendor/cornernote/yii2-gii/src/giiant/crud/gii-tools',
                 ],
             ],
         ],
