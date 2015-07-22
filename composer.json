@@ -51,7 +51,7 @@
     "cornernote/yii2-ace": "dev-master",
     "cornernote/yii2-gii": "dev-master",
     "cornernote/yii2-returnurl": "dev-master",
-    "cornernote/yii2-audit": "dev-master",
+    "bedezign/yii2-audit": "dev-master",
     "cornernote/yii2-softdelete": "dev-master",
     "cornernote/yii2-linkall": "dev-master",
     "cornernote/yii2-shortcuts": "dev-master"
