@@ -199,13 +199,13 @@ if (YII_ENV_DEV) {
             'giiant-model' => [
                 'class' => 'schmunk42\giiant\model\Generator',
                 'templates' => [
-                    'gii-tools' => '@vendor/cornernote/yii2-gii/src/giiant/model/cornernote',
+                    'cornernote' => '@vendor/cornernote/yii2-gii/src/giiant/model/cornernote',
                 ],
             ],
             'giiant-crud' => [
                 'class' => 'schmunk42\giiant\crud\Generator',
                 'templates' => [
-                    'gii-tools' => '@vendor/cornernote/yii2-gii/src/giiant/crud/cornernote',
+                    'cornernote' => '@vendor/cornernote/yii2-gii/src/giiant/crud/cornernote',
                 ],
             ],
         ],
