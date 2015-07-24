@@ -89,7 +89,7 @@ $config = [
         'adminEmail' => getenv('APP_ADMIN_EMAIL'),
         'supportEmail' => getenv('APP_SUPPORT_EMAIL'),
         'yii.migrations' => [
-            '@cornernote/audit/migrations',
+            '@bedezign/yii2/audit/migrations',
             '@dektrium/user/migrations',
             '@yii/rbac/migrations',
         ]
@@ -199,13 +199,13 @@ if (YII_ENV_DEV) {
             'giiant-model' => [
                 'class' => 'schmunk42\giiant\model\Generator',
                 'templates' => [
-                    'gii-tools' => '@vendor/cornernote/yii2-gii/src/giiant/model/gii-tools',
+                    'gii-tools' => '@vendor/cornernote/yii2-gii/src/giiant/model/cornernote',
                 ],
             ],
             'giiant-crud' => [
                 'class' => 'schmunk42\giiant\crud\Generator',
                 'templates' => [
-                    'gii-tools' => '@vendor/cornernote/yii2-gii/src/giiant/crud/gii-tools',
+                    'gii-tools' => '@vendor/cornernote/yii2-gii/src/giiant/crud/cornernote',
                 ],
             ],
         ],
