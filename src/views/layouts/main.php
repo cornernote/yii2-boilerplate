@@ -7,4 +7,4 @@ AppAsset::register($this);
 
 $regex = '|(\\' . DIRECTORY_SEPARATOR . '[^\\' . DIRECTORY_SEPARATOR . ']*\\' . DIRECTORY_SEPARATOR . '[^\\' . DIRECTORY_SEPARATOR . ']*\.php)$|';
 preg_match($regex, __FILE__, $matches);
-require(Yii::getAlias('@vendor/cornernote/yii2-ace-admin/views' . $matches[1]));
+require(Yii::getAlias('@vendor/cornernote/yii2-ace/src/views' . $matches[1]));

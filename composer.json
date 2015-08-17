@@ -32,6 +32,7 @@
   "minimum-stability": "stable",
   "require": {
     "php": ">=5.4.0",
+    "fxp/composer-asset-plugin": "~1.0.0",
     "dektrium/yii2-user": "0.9.*",
     "dektrium/yii2-rbac": "dev-master",
     "dmstr/yii2-app-command": "@stable",
