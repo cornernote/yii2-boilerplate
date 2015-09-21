@@ -43,9 +43,9 @@ $config = [
             'enablePrettyUrl' => getenv('APP_PRETTY_URLS') ? true : false,
             'showScriptName' => getenv('YII_ENV_TEST') ? true : false,
             'rules' => [
-                '<controller:[\w\-]+>/<id:\d+>' => '<controller>/view',
-                '<controller:[\w\-]+>/<action:[\w\-]+>/<id:\d+>' => '<controller>/<action>',
-                '<controller:[\w\-]+>/<action:[\w\-]+>' => '<controller>/<action>',
+                //'<controller:[\w\-]+>/<id:\d+>' => '<controller>/view',
+                //'<controller:[\w\-]+>/<action:[\w\-]+>/<id:\d+>' => '<controller>/<action>',
+                //'<controller:[\w\-]+>/<action:[\w\-]+>' => '<controller>/<action>',
             ],
         ],
         'view' => [
