@@ -15,7 +15,7 @@ mv composer.phar /usr/local/bin/composer
 You can install _Yii2 Boilerplate_ using [composer](https://getcomposer.org/download/)...
 
 ```
-composer global require "fxp/composer-asset-plugin:~1.0.3"
+composer global require "fxp/composer-asset-plugin:~1.1.1"
 composer create-project --stability=dev cornernote/yii2-boilerplate myapp
 ```
 
