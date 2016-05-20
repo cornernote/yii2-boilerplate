@@ -56,6 +56,9 @@ $config = [
                 ],
             ],
         ],
+        'settings' => [
+            'class' => 'pheme\settings\components\Settings'
+        ],
     ],
     'modules' => [
         'admin' => [
@@ -86,6 +89,9 @@ $config = [
             'class' => 'dektrium\rbac\Module',
             'enableFlashMessages' => false,
         ],
+        'settings' => [
+            'class' => 'pheme\settings\Module',
+        ],
     ],
     'params' => [
         'adminEmail' => getenv('APP_ADMIN_EMAIL'),
@@ -94,6 +100,7 @@ $config = [
             '@bedezign/yii2/audit/migrations',
             '@dektrium/user/migrations',
             '@yii/rbac/migrations',
+            '@vendor/pheme/yii2-settings/migrations',
         ]
     ]
 
