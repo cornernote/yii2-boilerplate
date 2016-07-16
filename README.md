@@ -54,3 +54,11 @@ Install psysh
 wget psysh.org/psysh
 mv psysh /usr/local/bin/psysh
 ```
+
+Code Generation
+
+```
+./yii gii-batch --tables=t1,t2
+./yii gii-batch/models --tables=t1,t2
+./yii gii-batch/cruds --tables=t1,t2
+```
