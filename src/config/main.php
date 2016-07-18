@@ -17,6 +17,9 @@ $config = [
             'dirMode' => YII_ENV_PROD ? 0777 : null, // Note: For using mounted volumes or shared folders
             'bundles' => YII_ENV_PROD ? require(__DIR__ . '/assets-prod.php') : null,
         ],
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+        ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
