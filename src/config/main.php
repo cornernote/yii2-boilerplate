@@ -76,8 +76,8 @@ $config = [
         'user' => [
             'class' => 'dektrium\user\Module',
             'defaultRoute' => 'profile',
-            'admins' => ['admin'],
-            'enableFlashMessages' => false,
+            //'admins' => ['admin'],
+            //'enableFlashMessages' => false,
             //'controllerMap' => [
             //    'security' => [
             //        'class' => 'dektrium\user\controllers\SecurityController',
@@ -86,8 +86,8 @@ $config = [
             //],
         ],
         'rbac' => [
-            'class' => 'dektrium\rbac\Module',
-            'enableFlashMessages' => false,
+            'class' => 'dektrium\rbac\RbacWebModule',
+            //'enableFlashMessages' => false,
         ],
         'settings' => [
             'class' => 'pheme\settings\Module',
