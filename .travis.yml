@@ -14,15 +14,15 @@ env:
   global:
     - YII_ENV=test
     - APP_PRETTY_URLS=0
-    - DB_PORT_3306_TCP_ADDR=localhost
-    - DB_ENV_MYSQL_DATABASE=p4_test
-    - DB_ENV_MYSQL_USER=test
-    - DB_ENV_MYSQL_PASSWORD=test123
+    - DB_HOST=localhost
+    - DB_NAME=app_test
+    - DB_USERNAME=test
+    - DB_PASSWORD=test123
 install:
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
   - composer self-update && composer --version
   - composer global require "fxp/composer-asset-plugin:1.0.0-beta4"
-  - cp .env-dist .env
+  - cp app.env-dist .env
   - composer install --dev --prefer-dist
 
 before_script:

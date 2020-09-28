@@ -1,6 +1,7 @@
 /_html
 /tmp
 .env
+src/app.env
 
 # phpstorm project files
 .idea

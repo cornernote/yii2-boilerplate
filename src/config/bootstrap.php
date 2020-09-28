@@ -1,26 +1,44 @@
 <?php
 
-function debug($var, $name = null, $attributesOnly = true)
-{
-    $bt = debug_backtrace();
-    $file = str_ireplace(dirname(dirname(__FILE__)), '', $bt[0]['file']);
-    if (!class_exists('\yii\db\BaseActiveRecord', false))
-        $attributesOnly = false;
-    $name = $name ? '<b><span style="font-size:18px;">' . $name . ($attributesOnly ? ' [attributes]' : '') . '</span></b>:<br/>' : '';
-    echo '<div style="background: #FFFBD6">';
-    echo '<span style="font-size:12px;">' . $name . ' ' . $file . ' on line ' . $bt[0]['line'] . '</span>';
-    echo '<div style="border:1px solid #000;">';
-    echo '<pre>';
-    if (is_scalar($var))
-        var_dump($var);
-    elseif ($attributesOnly && $var instanceof \yii\db\BaseActiveRecord)
-        print_r($var->attributes);
-    elseif ($attributesOnly && is_array($var) && current($var) instanceof \yii\db\BaseActiveRecord)
-        foreach ($var as $_var)
-            print_r($_var->attributes);
-    else
-        print_r($var);
-    echo '</pre></div></div>';
+if (!function_exists('debug')) {
+    function debug($var, $name = null, $attributesOnly = true)
+    {
+        $cli = php_sapi_name() == 'cli';
+        $bt = debug_backtrace();
+        $file = str_ireplace(dirname(dirname(__FILE__)), '', $bt[0]['file']);
+        if (!class_exists(\yii\base\Model::class, false)) {
+            $attributesOnly = false;
+        }
+        if ($cli) {
+            $name = $name ? '===' . $name . ($attributesOnly ? ' [attributes]' : '') . '===' . "\n" : '';
+            echo $name . $file . ':' . $bt[0]['line'] . "\n";
+        } else {
+            $name = $name ? '<b><span style="font-size:18px;">' . $name . ($attributesOnly ? ' [attributes]' : '') . '</span></b>:<br/>' : '';
+            echo '<div style="background: #FFFBD6; border:1px solid #aaaaaa;">';
+            echo '<h4 style="margin: 0; padding: 5px; border-bottom: 1px solid #aaaaaa;">' . $name . $file . ':' . $bt[0]['line'] . '</h4>';
+        }
+        if (is_scalar($var)) {
+            ob_start();
+            var_dump($var);
+            $out = ob_get_clean();
+        } elseif ($attributesOnly && $var instanceof \yii\base\Model) {
+            $out = \yii\helpers\VarDumper::export($var->attributes);
+        } elseif ($attributesOnly && is_array($var) && current($var) instanceof \yii\base\Model) {
+            foreach ($var as $k => $_var) {
+                $var[$k] = $_var->attributes;
+            }
+            $out = \yii\helpers\VarDumper::export($var);
+        } else {
+            $out = \yii\helpers\VarDumper::export($var);
+        }
+        if ($cli) {
+            echo $out;
+            echo "\n";
+        } else {
+            echo preg_replace('/&lt;\\?php<br \\/>/', '', highlight_string("<?php\n" . $out, true), 1);
+            echo '</div>';
+        }
+    }
 }
 
 Yii::setAlias('@app', dirname(dirname(__DIR__)));

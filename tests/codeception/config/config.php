@@ -8,7 +8,7 @@ return [
             'useFileTransport' => true,
         ],
         'request' => [
-           'cookieValidationKey' => getenv('APP_COOKIE_VALIDATION_KEY')
+           'cookieValidationKey' => $_ENV['APP_COOKIE_VALIDATION_KEY']
         ],
     ],
 ];

@@ -12,4 +12,4 @@ RUN /usr/local/bin/composer install --prefer-dist --optimize-autoloader
 ADD . /app
 
 # Easy PaaS setup
-ENV DB_ENV_MYSQL_DATABASE test
+ENV DB_NAME test
