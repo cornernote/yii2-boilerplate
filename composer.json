@@ -1,33 +1,27 @@
 {
-  "name": "cornernote/yiy2-boilerplate",
+  "name": "cornernote/yii2-boilerplate",
+  "description": "Yii2 Boilerplate",
+  "homepage": "https://github.com/cornernote/yii2-boilerplate",
   "type": "project",
-  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://github.com/cornernote/yii2-boilerplate/issues",
+    "source": "https://github.com/cornernote/yii2-boilerplate"
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
+    }
+  ],
   "require": {
-    "php": ">=5.4.0",
-    "fxp/composer-asset-plugin": "~1.0.0",
-    "dektrium/yii2-user": "0.9.*",
-    "dektrium/yii2-rbac": "dev-master",
-    "dmstr/yii2-app-command": "@stable",
-    "dmstr/yii2-log": "@stable",
-    "dmstr/yii2-migrate-command": "@stable",
+    "php": ">=7.3.0",
     "mikehaertl/php-shellcommand": "1.*",
-    "vlucas/phpdotenv": "1.1.*",
     "yiisoft/yii2": "2.0.*",
     "yiisoft/yii2-bootstrap": "2.*",
-    "yiisoft/yii2-composer": "*",
-    "yiisoft/yii2-swiftmailer": "2.*",
+    "yiisoft/yii2-redis": "^2.0",
     "bower-asset/jquery": "@stable",
-    "kartik-v/yii2-widget-select2": "*",
-    "vova07/yii2-console-runner-extension": "*",
-    "raoul2000/yii2-workflow": "*",
-    "zhuravljov/yii2-datetime-widgets": "*",
-    "cornernote/yii2-ace": "dev-master",
-    "cornernote/yii2-gii": "dev-master",
     "bedezign/yii2-audit": "dev-master",
-    "cornernote/yii2-softdelete": "dev-master",
-    "cornernote/yii2-linkall": "dev-master",
-    "cornernote/yii2-shortcuts": "dev-master",
-    "pheme/yii2-settings": "*"
+    "2amigos/yii2-usuario": "~1.0"
   },
   "require-dev": {
     "yiisoft/yii2-apidoc": "2.*",
@@ -35,8 +29,7 @@
     "yiisoft/yii2-coding-standards": "2.*",
     "yiisoft/yii2-debug": "2.*",
     "yiisoft/yii2-faker": "2.*",
-    "yiisoft/yii2-gii": "2.*",
-    "cebe/markdown-latex": "dev-master"
+    "yiisoft/yii2-gii": "2.*"
   },
   "scripts": {
     "post-create-project-cmd": [
@@ -63,6 +56,26 @@
     "asset-pattern-skip-version": "(-build|-patch)"
   },
   "config": {
-    "process-timeout": 1800
-  }
+    "optimize-autoloader": true,
+    "preferred-install": {
+      "*": "dist"
+    },
+    "platform": {
+      "php": "7.3"
+    },
+    "process-timeout": 3600,
+    "fxp-asset": {
+      "enabled": false,
+      "installer-paths": {
+        "npm-asset-library": "vendor/npm",
+        "bower-asset-library": "vendor/bower"
+      },
+      "vcs-driver-options": {
+        "github-no-api": true
+      },
+      "pattern-skip-version": "(-build|-patch)"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }

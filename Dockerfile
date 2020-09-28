@@ -1,8 +1,7 @@
-FROM phundament/app:development
+FROM cornernote/php
 
 # Prepare composer
-# /!\ Note: Please add your own API token to config.json; Phundament comes with a public token for your convenince, which may hit a rate limit
-ADD ./build/composer/config.json /root/.composer/config.json
+#ADD ./build/composer/config.json /root/.composer/config.json
 
 # Install packages first
 ADD ./composer.lock /app/composer.lock
@@ -13,4 +12,4 @@ RUN /usr/local/bin/composer install --prefer-dist --optimize-autoloader
 ADD . /app
 
 # Easy PaaS setup
-ENV DB_ENV_MYSQL_DATABASE dev-myapp
+ENV DB_ENV_MYSQL_DATABASE test
