@@ -15,15 +15,18 @@
   ],
   "require": {
     "php": ">=7.3.0",
+    "yiisoft/yii2": "^2.0",
+    "yiisoft/yii2-bootstrap4": "^2.0",
+    "yiisoft/yii2-redis": "^2.0",
+    "yiisoft/yii2-queue": "^2.0",
     "vlucas/phpdotenv": "5.2.*",
     "codemix/yii2-streamlog": "*",
-    "mikehaertl/php-shellcommand": "1.*",
-    "yiisoft/yii2": "2.0.*",
-    "yiisoft/yii2-bootstrap": "2.*",
-    "yiisoft/yii2-redis": "^2.0",
     "bower-asset/jquery": "@stable",
+    "daxslab/yii2-coreui": "*",
     "bedezign/yii2-audit": "dev-master",
-    "2amigos/yii2-usuario": "~1.0"
+    "2amigos/yii2-usuario": "~1.0",
+    "mikehaertl/php-shellcommand": "1.*",
+    "mikehaertl/phpwkhtmltopdf": "^2.4"
   },
   "require-dev": {
     "yiisoft/yii2-apidoc": "2.*",

@@ -141,11 +141,11 @@ return [
 //            'class' => 'pheme\settings\components\Settings',
 //        ],
         'user' => [
-            'class' => 'app\components\User',
+            'class' => '\yii\web\User',
             'enableAutoLogin' => true,
             'loginUrl' => ['/user/security/login'],
             'identityClass' => 'app\models\User',
-            'rootUsers' => ['admin'],
+            //'rootUsers' => ['admin'],
             'identityCookie' => [
                 'httpOnly' => true,
                 'name' => '_identity',
