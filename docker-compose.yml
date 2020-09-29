@@ -6,12 +6,7 @@ services:
     ports:
       - 80:80
     volumes:
-      #- ./build/php/config/root/.bashrc:/root/.bashrc
-      #- ./build/php/config/root/.composer/auth.json:/root/.composer/auth.json
-      #- ./build/php/config/usr/local/etc/php/conf.d/base.ini:/usr/local/etc/php/conf.d/base.ini
-      #- ./build/php/config/usr/local/etc/php-fpm.d/zzz-app.conf:/usr/local/etc/php-fpm.d/zzz-app.conf
-      #- ./.git:/app/.git
-      - ./.env:/app/.env
+      - ./.git:/app/.git
       - ./composer.json:/app/composer.json
       - ./composer.lock:/app/composer.lock
       - ./codeception.yml:/app/codeception.yml

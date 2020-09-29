@@ -11,19 +11,30 @@ use Yii;
  */
 class User extends \yii\web\User
 {
+
     /**
-     * @inheritdoc
+     * @param string $permissionName
+     * @param array $params
+     * @param bool $allowCaching
+     * @return bool
+     * @throws \yii\base\InvalidConfigException
      */
     public function can($permissionName, $params = [], $allowCaching = true)
     {
         if (Yii::$app instanceof \yii\console\Application) {
             return true;
         }
+        if ($this->getIsAdmin()) {
+            return true;
+        }
         return parent::can($permissionName, $params, $allowCaching);
     }
 
+
     /**
-     * @inheritdoc
+     * @param bool $autoRenew
+     * @return \yii\web\IdentityInterface|null
+     * @throws \Throwable
      */
     public function getIdentity($autoRenew = true)
     {
@@ -32,4 +43,17 @@ class User extends \yii\web\User
         }
         return parent::getIdentity($autoRenew);
     }
+
+    /**
+     * @return bool
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function getIsAdmin()
+    {
+        if (!$this->isGuest && $this->identity->getIsAdmin()) {
+            return true;
+        }
+        return false;
+    }
+
 }

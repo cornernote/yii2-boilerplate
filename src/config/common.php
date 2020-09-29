@@ -121,18 +121,18 @@ return [
             'useSSL' => (bool)$_ENV['REDIS_SSL'] ?: null,
             'password' => $_ENV['REDIS_PASSWORD'] ?: null,
         ],
-//        's3' => [
-//            'class' => 'frostealth\yii2\aws\s3\Storage',
-//            'credentials' => [
-//                'key' => $_ENV['S3_KEY'],
-//                'secret' => $_ENV['S3_SECRET'],
-//            ],
-//            'region' => 'ap-southeast-2',
-//            'bucket' => $_ENV['S3_BUCKET'],
-//            'cdnHostname' => 'https://' . $_ENV['S3_BUCKET'],
-//            'defaultAcl' => 'public-read',
-//            //'debug' => true,
-//        ],
+        's3' => [
+            'class' => 'frostealth\yii2\aws\s3\Storage',
+            'credentials' => [
+                'key' => $_ENV['S3_KEY'],
+                'secret' => $_ENV['S3_SECRET'],
+            ],
+            'region' => 'ap-southeast-2',
+            'bucket' => $_ENV['S3_BUCKET'],
+            'cdnHostname' => 'https://' . $_ENV['S3_BUCKET'],
+            'defaultAcl' => 'public-read',
+            //'debug' => true,
+        ],
         'settings' => [
             'class' => 'pheme\settings\components\Settings',
         ],
@@ -160,39 +160,38 @@ return [
         ],
     ],
     'modules' => [
-//        'audit' => [
-//            'class' => 'bedezign\yii2\audit\Audit',
-//            'ignoreActions' => ['audit/*', 'debug/*', 'audit-alert/*'],
-//            'accessRoles' => ['admin'],
-//            'userIdentifierCallback' => ['app\models\User', 'userIdentifierCallback'],
-//            'logConfig' => [
-//                'levels' => [
-//                    'error',
-//                    'warning',
-//                ],
-//            ],
-//            // panels config
-//            'panels' => [
-//                'audit/error',
-//                'audit/javascript',
-//                'audit/request' => [
-//                    //'ignoreKeys' => ['SERVER'],
-//                ],
-//                'audit/trail',
-//                'audit/mail',
-//                //'queue' => [
-//                //    'class' => 'app\components\audit\panels\QueuePanel',
-//                //],
-//                //'task' => [
-//                //    'class' => 'app\components\audit\panels\TaskPanel',
-//                //],
-//            ],
-//        ],
+        //'audit' => [
+        //    'class' => 'bedezign\yii2\audit\Audit',
+        //    'ignoreActions' => ['audit/*', 'debug/*', 'audit-alert/*'],
+        //    'accessRoles' => ['admin'],
+        //    'userIdentifierCallback' => ['app\models\User', 'userIdentifierCallback'],
+        //    'logConfig' => [
+        //        'levels' => [
+        //            'error',
+        //            'warning',
+        //        ],
+        //    ],
+        //    // panels config
+        //    'panels' => [
+        //        'audit/error',
+        //        'audit/javascript',
+        //        'audit/request' => [
+        //            //'ignoreKeys' => ['SERVER'],
+        //        ],
+        //        'audit/trail',
+        //        'audit/mail',
+        //        //'queue' => [
+        //        //    'class' => 'app\components\audit\panels\QueuePanel',
+        //        //],
+        //        //'task' => [
+        //        //    'class' => 'app\components\audit\panels\TaskPanel',
+        //        //],
+        //    ],
+        //],
         // in both web and console so we can use command line tools of Da\User like change password/create password
         'user' => [
             'class' => 'Da\User\Module',
             'layout' => '@app/views/layouts/main',
-            #'layout' => 'SEE_DEPENDENCY_INJECTION',
             'defaultRoute' => 'admin',
             'administratorPermissionName' => 'user-module',
             'administrators' => ['admin'],
