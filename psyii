@@ -1,3 +1,0 @@
-#!/bin/sh -x
-
-psysh ./config/psyii/init.php --config ./config/psyii/config.php

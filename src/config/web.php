@@ -3,10 +3,10 @@
 // Settings for web-application only
 return [
     'components' => [
-        //'errorHandler' => [
-        //    'class' => 'app\components\web\ErrorHandler',
-        //    'errorAction' => 'error/index',
-        //],
+        'errorHandler' => [
+            'class' => 'bedezign\yii2\audit\components\web\ErrorHandler',
+            'errorAction' => 'error/index',
+        ],
         'request' => [
             'cookieValidationKey' => $_ENV['APP_COOKIE_VALIDATION_KEY'],
             'csrfCookie' => [
@@ -25,15 +25,15 @@ return [
             'cookieParams' => [
                 'httpOnly' => true,
                 'path' => '/',
-                'domain' => $_ENV['APP_COOKIE_DOMAIN'] ?: null,
+                'domain' => $_ENV['APP_COOKIE_DOMAIN'] ?: false,
             ],
         ],
     ],
     'modules' => [
-        //'settings' => [
-        //    'class' => 'pheme\settings\Module',
-        //    'layout' => '@app/views/layouts/box',
-        //    'accessRoles' => ['settings-module'],
-        //],
+        'settings' => [
+            'class' => 'pheme\settings\Module',
+            'layout' => '@app/views/layouts/main',
+            'accessRoles' => ['settings-module'],
+        ],
     ],
 ];

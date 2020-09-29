@@ -1,19 +1,19 @@
 <?php
 
-// Settings for web-application only
+// Settings for web-application developer-mode only
 return [
     'bootstrap' => [
-        'debug',
+        //'debug',
     ],
     'modules' => [
-        'debug' => [
-            'class' => 'yii\debug\Module',
-            'allowedIPs' => ['*'],
-            //'panels' => [
-            //    'queue' => [
-            //        'class' => 'yii\queue\debug\Panel',
-            //    ]
-            //],
-        ],
+        //'debug' => [
+        //    'class' => 'yii\debug\Module',
+        //    'allowedIPs' => ['*'],
+        //    //'panels' => [
+        //    //    'queue' => [
+        //    //        'class' => 'yii\queue\debug\Panel',
+        //    //    ]
+        //    //],
+        //],
     ],
 ];

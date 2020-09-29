@@ -52,11 +52,11 @@ return [
             'password' => $_ENV['DB_PASSWORD'],
             'charset' => 'utf8',
             'tablePrefix' => $_ENV['DB_TABLE_PREFIX'],
-            'enableSchemaCache' => $_ENV['YII_DEBUG'] ? false : true,
+            'enableSchemaCache' => !YII_DEBUG,
             //'enableQueryCache' => true,
             //'queryCache' => 'cacheModel',
-            'enableLogging' => $_ENV['YII_DEBUG'] ? true : false,
-            'enableProfiling' => $_ENV['YII_DEBUG'] ? true : false,
+            'enableLogging' => YII_DEBUG,
+            'enableProfiling' => YII_DEBUG,
         ],
         'formatter' => [
             'locale' => $_ENV['APP_LOCALE'],
@@ -93,24 +93,20 @@ return [
                         'yii\web\HttpException:404',
                     ],
                 ],
-                // writes audit logs to queue, when disabled Audit module automatically populates this
-                //'audit' => [
-                //    'class' => 'app\components\AuditLogTarget',
-                //],
             ],
         ],
-//        'mailer' => [
-//            'class' => 'yii\swiftmailer\Mailer',
-//            'useFileTransport' => YII_ENV_PROD ? false : true,
-//            'transport' => [
-//                'class' => 'Swift_SmtpTransport',
-//                'host' => $_ENV['SMTP_HOST'],
-//                'username' => $_ENV['SMTP_USER'],
-//                'password' => $_ENV['SMTP_PASS'],
-//                'port' => (int)$_ENV['SMTP_PORT'],
-//                'encryption' => $_ENV['SMTP_ENCRYPTION'],
-//            ],
-//        ],
+        'mailer' => [
+            'class' => 'yii\swiftmailer\Mailer',
+            'useFileTransport' => YII_ENV_PROD ? false : true,
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => $_ENV['SMTP_HOST'],
+                'username' => $_ENV['SMTP_USER'],
+                'password' => $_ENV['SMTP_PASS'],
+                'port' => (int)$_ENV['SMTP_PORT'],
+                'encryption' => $_ENV['SMTP_ENCRYPTION'],
+            ],
+        ],
 //        'queue' => [
 //            'class' => 'app\queues\QueueGearman',
 //            'host' => $_ENV['GEARMAN_HOST'] ?: '127.0.0.1',
@@ -137,15 +133,14 @@ return [
 //            'defaultAcl' => 'public-read',
 //            //'debug' => true,
 //        ],
-//        'settings' => [
-//            'class' => 'pheme\settings\components\Settings',
-//        ],
+        'settings' => [
+            'class' => 'pheme\settings\components\Settings',
+        ],
         'user' => [
-            'class' => '\yii\web\User',
+            'class' => 'app\components\User',
             'enableAutoLogin' => true,
             'loginUrl' => ['/user/security/login'],
-            'identityClass' => 'app\models\User',
-            //'rootUsers' => ['admin'],
+            'identityClass' => 'Da\User\Model\User',
             'identityCookie' => [
                 'httpOnly' => true,
                 'name' => '_identity',
@@ -155,52 +150,48 @@ return [
         ],
         'urlManager' => [
             'enablePrettyUrl' => $_ENV['APP_PRETTY_URLS'] ? true : false,
-            'showScriptName' => $_ENV['YII_ENV'] == 'test',
+            'showScriptName' => YII_ENV_TEST,
             //'enableDefaultLanguageUrlCode' => true,
             //'baseUrl' => $_ENV['APP_BASE_URL'] ?: '/',
-            'normalizer' => [
-                'class' => 'yii\web\UrlNormalizer',
-                // use temporary redirection instead of permanent for debugging
-                'action' => \yii\web\UrlNormalizer::ACTION_REDIRECT_TEMPORARY,
+            'rules'=>[
+                //'login' => 'user/security/login',
+                //'logout' => 'user/security/logout',
             ],
         ],
     ],
     'modules' => [
-        'audit' => [
-            //'class' => 'app\components\audit\Audit', // cannot be extended due to Audit::getInstance()
-            'db' => 'dbAudit',
-            'ignoreActions' => ['audit/*', 'debug/*', 'audit-alert/*'],
-
-            'class' => 'bedezign\yii2\audit\Audit',
-            'accessRoles' => ['admin'],
-            'userIdentifierCallback' => ['app\models\User', 'userIdentifierCallback'],
-            'logConfig' => [
-                'levels' => [
-                    'error',
-                    'warning',
-                ],
-            ],
-            // panels config
-            /** @see QueueTrait::finalizeTask() */
-            'panels' => [
-                'audit/error',
-                'audit/javascript',
-                'audit/request' => [
-                    'ignoreKeys' => ['SERVER'],
-                ],
-                'audit/trail',
-                'audit/mail',
-                //'queue' => [
-                //    'class' => 'app\components\audit\panels\QueuePanel',
-                //],
-                //'task' => [
-                //    'class' => 'app\components\audit\panels\TaskPanel',
-                //],
-            ],
-        ],
+//        'audit' => [
+//            'class' => 'bedezign\yii2\audit\Audit',
+//            'ignoreActions' => ['audit/*', 'debug/*', 'audit-alert/*'],
+//            'accessRoles' => ['admin'],
+//            'userIdentifierCallback' => ['app\models\User', 'userIdentifierCallback'],
+//            'logConfig' => [
+//                'levels' => [
+//                    'error',
+//                    'warning',
+//                ],
+//            ],
+//            // panels config
+//            'panels' => [
+//                'audit/error',
+//                'audit/javascript',
+//                'audit/request' => [
+//                    //'ignoreKeys' => ['SERVER'],
+//                ],
+//                'audit/trail',
+//                'audit/mail',
+//                //'queue' => [
+//                //    'class' => 'app\components\audit\panels\QueuePanel',
+//                //],
+//                //'task' => [
+//                //    'class' => 'app\components\audit\panels\TaskPanel',
+//                //],
+//            ],
+//        ],
         // in both web and console so we can use command line tools of Da\User like change password/create password
         'user' => [
             'class' => 'Da\User\Module',
+            'layout' => '@app/views/layouts/main',
             #'layout' => 'SEE_DEPENDENCY_INJECTION',
             'defaultRoute' => 'admin',
             'administratorPermissionName' => 'user-module',

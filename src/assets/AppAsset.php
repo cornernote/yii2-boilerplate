@@ -1,18 +1,11 @@
 <?php
-/**
- * @link http://www.yiiframework.com/
- * @copyright Copyright (c) 2008 Yii Software LLC
- * @license http://www.yiiframework.com/license/
- */
 
 namespace app\assets;
 
-use yii\helpers\FileHelper;
 use yii\web\AssetBundle;
 
 /**
- * Configuration for `backend` client script files
- * @since 4.0
+ * Application asset bundle.
  */
 class AppAsset extends AssetBundle
 {
@@ -21,13 +14,14 @@ class AppAsset extends AssetBundle
     public $sourcePath = '@app/assets/web';
 
     public $css = [
+        'css/yii-coreui.css',
         'css/app.css',
     ];
     public $js = [
-        'js/modal.js',
         'js/app.js',
     ];
     public $depends = [
-        'yii\web\YiiAsset',
+        CoreUiAsset::class,
+        SimpleLineIconsAsset::class,
     ];
 }

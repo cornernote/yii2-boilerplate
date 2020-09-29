@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4ff5befa7e98f86cd4d3bf09551afe3a",
+    "content-hash": "f7d3531079169bef50320264c3e12086",
     "packages": [
         {
             "name": "2amigos/yii2-chartjs-widget",
@@ -506,6 +506,49 @@
             "time": "2018-03-26T11:15:02+00:00"
         },
         {
+            "name": "cebe/yii2-gravatar",
+            "version": "1.1",
+            "target-dir": "cebe/gravatar",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cebe/yii2-gravatar.git",
+                "reference": "c9c01bd14c9bdee9e5ae1ef1aad23f80c182c057"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cebe/yii2-gravatar/zipball/c9c01bd14c9bdee9e5ae1ef1aad23f80c182c057",
+                "reference": "c9c01bd14c9bdee9e5ae1ef1aad23f80c182c057",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-0": {
+                    "cebe\\gravatar\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Carsten Brandt",
+                    "email": "mail@cebe.cc",
+                    "homepage": "http://cebe.cc/",
+                    "role": "Core framework development"
+                }
+            ],
+            "description": "Gravatar Widget for Yii 2",
+            "keywords": [
+                "gravatar",
+                "yii"
+            ],
+            "time": "2013-12-10T17:49:58+00:00"
+        },
+        {
             "name": "codemix/yii2-streamlog",
             "version": "1.3.1",
             "source": {
@@ -582,48 +625,6 @@
                 }
             ],
             "time": "2020-06-24T18:51:07+00:00"
-        },
-        {
-            "name": "daxslab/yii2-coreui",
-            "version": "3.2.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/daxslab/yii2-coreui.git",
-                "reference": "17706a99978a69b2a83348c1dd3a3b3323781a55"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/daxslab/yii2-coreui/zipball/17706a99978a69b2a83348c1dd3a3b3323781a55",
-                "reference": "17706a99978a69b2a83348c1dd3a3b3323781a55",
-                "shasum": ""
-            },
-            "require": {
-                "coreui/coreui": "~3.2.0"
-            },
-            "type": "yii2-extension",
-            "autoload": {
-                "psr-4": {
-                    "daxslab\\coreui\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Daxslab",
-                    "email": "info@daxslab.com"
-                }
-            ],
-            "description": "CoreUi for Yii2",
-            "keywords": [
-                "coreui",
-                "layout",
-                "yii",
-                "yii2"
-            ],
-            "time": "2020-09-16T19:46:51+00:00"
         },
         {
             "name": "doctrine/lexer",
@@ -1012,6 +1013,18 @@
             ]
         },
         {
+            "name": "npm-asset/simple-line-icons",
+            "version": "2.4.1",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/simple-line-icons/-/simple-line-icons-2.4.1.tgz"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
             "name": "opis/closure",
             "version": "3.5.7",
             "source": {
@@ -1116,6 +1129,93 @@
                 "random"
             ],
             "time": "2018-07-02T15:55:56+00:00"
+        },
+        {
+            "name": "pheme/yii2-settings",
+            "version": "0.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phemellc/yii2-settings.git",
+                "reference": "5e15e82442a62007727466439735602555dde8df"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phemellc/yii2-settings/zipball/5e15e82442a62007727466439735602555dde8df",
+                "reference": "5e15e82442a62007727466439735602555dde8df",
+                "shasum": ""
+            },
+            "require": {
+                "pheme/yii2-toggle-column": "*",
+                "yiisoft/yii2": ">=2.0.6"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "pheme\\settings\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Aris Karageorgos",
+                    "email": "aris@phe.me"
+                }
+            ],
+            "description": "Yii2 Database settings",
+            "keywords": [
+                "Settings",
+                "config",
+                "yii2"
+            ],
+            "time": "2018-10-30T22:18:20+00:00"
+        },
+        {
+            "name": "pheme/yii2-toggle-column",
+            "version": "0.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phemellc/yii2-toggle-column.git",
+                "reference": "5b760fcf15e02b3bcd1ab373b91bb05fbac2b729"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phemellc/yii2-toggle-column/zipball/5b760fcf15e02b3bcd1ab373b91bb05fbac2b729",
+                "reference": "5b760fcf15e02b3bcd1ab373b91bb05fbac2b729",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": ">=2.0.7"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "\\pheme\\grid\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Aris Karageorgos",
+                    "email": "aris@phe.me"
+                }
+            ],
+            "description": "Provides a toggle data column and action",
+            "keywords": [
+                "column",
+                "extension",
+                "toggle",
+                "yii2"
+            ],
+            "time": "2020-07-09T16:07:24+00:00"
         },
         {
             "name": "phpoption/phpoption",

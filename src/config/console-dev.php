@@ -1,6 +1,6 @@
 <?php
 
-// Settings for console-dev-application only
+// Settings for console-dev-application developer-mode only
 return [
     'controllerMap' => [
         'fixture' => [

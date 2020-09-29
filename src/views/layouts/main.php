@@ -1,59 +1,135 @@
 <?php
 
+use cebe\gravatar\Gravatar;
 use yii\bootstrap4\Modal;
+use yii\bootstrap4\Nav;
 use yii\helpers\FileHelper;
 use yii\helpers\Html;
 use yii\helpers\Markdown;
 use yii\widgets\Breadcrumbs;
+use yii\widgets\Menu;
 
-/* @var $this \yii\web\View */
-/* @var $content string */
+/**
+ * @var $this \yii\web\View
+ * @var $content string
+ */
 
-$this->params['top-menu'] = isset($this->params['top-menu']) ? $this->params['top-menu'] : [];
-$this->params['left-menu'] = isset($this->params['left-menu']) ? $this->params['left-menu'] : [];
-$this->params['user-menu'] = isset($this->params['user-menu']) ? $this->params['user-menu'] : [];
 
-$homeUrl = isset(Yii::$app->params['index-url']) ? Yii::$app->params['index-url'] : Yii::$app->homeUrl;
-$logoUrl = isset(Yii::$app->params['logo-url']) ? Yii::$app->params['logo-url'] : Yii::getAlias('@web/images/logo.png');
-$logoResponsiveUrl = isset(Yii::$app->params['logo-responsive-url']) ? Yii::$app->params['logo-responsive-url'] : Yii::getAlias('@web/images/logo-responsive.png');
-$iconUrl = isset(Yii::$app->params['icon-url']) ? Yii::$app->params['icon-url'] : 'https://coreui.io/demo/3.2.0/assets/brand/coreui-pro.svg#full';
+$controller = Yii::$app->controller->id;
+$action = Yii::$app->controller->action->id;
+$helpFile = FileHelper::localize(Yii::getAlias("@app/help/{$controller}/{$action}.md"));
 
-$controller = $this->context->id;
-$action = $this->context->action->id;
-
-$helpFile = FileHelper::localize(Yii::getAlias("@app/help/{$controller}-{$action}.md"));
-
-if (isset($this->params['breadcrumbs']) && file_exists($helpFile)) {
-
-    $helpButton = Html::a(Yii::t('app', '{icon} Help', [
-        'icon' => Html::tag('i', null, ['class' => 'icon-question']),
-    ]), '#modal-help', [
-        'class' => 'btn',
-        'data-toggle' => 'modal',
-    ]);
-
-    $rightOptionsContainer = Html::tag('div', $helpButton, [
-        'class' => 'btn-group',
-        'role' => 'group',
-        'aria-label' => 'Button group',
-    ]);
-
-    $this->params['breadcrumbs'][] = Html::tag('li', $rightOptionsContainer, [
-        'class' => 'breadcrumb-menu d-md-down-none'
-    ]);
+$topMenu = [];
+if (file_exists($helpFile)) {
+    $topMenu[] = [
+        'label' => Yii::t('app', '{icon} Help', [
+            'icon' => Html::tag('i', null, ['class' => 'icon-question']),
+        ]),
+        'url' => '#modal-help',
+        'linkOptions' => [
+            'data-toggle' => 'modal',
+        ],
+        'options' => [
+            'class' => 'c-header-nav-item',
+        ],
+    ];
 }
 
+// user menu
+$user = Yii::$app->user;
+if ($user->isGuest) {
+    $topMenu[] = [
+        'label' => Yii::t('app', 'Login'),
+        'url' => ['/user/security/login'],
+        'options' => [
+            'class' => 'c-header-nav-item btn btn-sm btn-secondary',
+        ],
+    ];
+} else {
+    $topMenu[] = [
+        //'label' => '<div class="c-avatar"><img class="c-avatar-img" src="https://coreui.io/demo/3.2.0/assets/img/avatars/6.jpg" alt="user@email.com"></div>',
+        'label' => Html::tag('div', Gravatar::widget([
+            'email' => $user->identity->profile->gravatar_email ?: $user->identity->email,
+            'options' => [
+                'alt' => $user->identity->username,
+                'class' => 'c-avatar-img',
+            ],
+            'size' => 36,
+            'secure' => true,
+        ]), [
+            'class' => 'c-avatar',
+        ]),
+        'options' => [
+            'class' => 'c-header-nav-item',
+        ],
+        'linkOptions' => [
+            'class' => 'c-header-nav-link',
+        ],
+        'dropdownOptions' => [
+            'class' => 'dropdown-menu-right pt-0',
+        ],
+        'items' => [
+            ['label' => 'Admin'],
+            [
+                'label' => Yii::t('app', 'Users'),
+                'url' => ['/user/admin/index'],
+            ],
+            [
+                'label' => Yii::t('app', 'Roles'),
+                'url' => ['/user/role/index'],
+            ],
+            [
+                'label' => Yii::t('app', 'Permissions'),
+                'url' => ['/user/permission/index'],
+            ],
+            [
+                'label' => Yii::t('app', 'Rules'),
+                'url' => ['/user/rule/index'],
+            ],
+            ['label' => 'Account'],
+            [
+                'label' => Yii::t('app', 'Settings'),
+                'url' => ['/user/settings/account'],
+            ],
+            //[
+            //    'label' => Yii::t('app', 'Profile'),
+            //    'url' => ['/user/profile/index'],
+            //],
+            [
+                'label' => Yii::t('app', 'Logout'),
+                'url' => ['/user/security/logout'],
+                'linkOptions' => [
+                    'data-method' => 'post',
+                ],
+            ],
+        ],
+    ];
+}
 ?>
 
-<?php $this->beginContent('@app/views/layouts/empty.php') ?>
+<?php $this->beginContent('@app/views/layouts/minimal.php') ?>
 
     <div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
-        <a href="<?= $homeUrl ?>" class="c-sidebar-brand d-lg-down-none">
-            <img class="c-sidebar-brand-full" src="<?= $logoUrl ?>" alt="<?= Yii::$app->name ?>">
-            <img class="c-sidebar-brand-minimized" src="<?= $iconUrl ?>" alt="<?= Yii::$app->name ?>">
+        <a href="<?= Yii::$app->homeUrl ?>" class="c-sidebar-brand d-md-down-none">
+            <span class="c-sidebar-brand-full">
+                <?php /*
+                <img src="<?= Yii::getAlias('@web/logo.png') ?>" style="max-height: 48px" alt="<?= Yii::$app->name ?>">
+                */ ?>
+                <span class="icon-emotsmile"></span>
+                <?= Yii::$app->name ?>
+            </span>
+            <?php /*
+            <img class="c-sidebar-brand-minimized" src="<?= Yii::getAlias('@web/logo.png') ?>" style="max-height: 48px" alt="<?= Yii::$app->name ?>">
+            */ ?>
+            <span class="c-sidebar-brand-minimized icon-emotsmile"></span>
         </a>
-        <?= \yii\widgets\Menu::widget([
-            'items' => $this->params['left-menu'],
+        <?= Menu::widget([
+            'items' => [
+                [
+                    'url' => Yii::$app->homeUrl,
+                    'label' => Yii::t('app', 'Home'),
+                ],
+            ],
             'encodeLabels' => false,
             'options' => [
                 'class' => 'c-sidebar-nav'
@@ -65,37 +141,44 @@ if (isset($this->params['breadcrumbs']) && file_exists($helpFile)) {
         ]) ?>
 
         <button class="c-sidebar-minimizer c-class-toggler" type="button" data-target="_parent"
-            data-class="c-sidebar-minimized"></button>
+                data-class="c-sidebar-minimized"></button>
     </div>
     <div class="c-wrapper c-fixed-components">
         <header class="c-header c-header-light c-header-fixed c-header-with-subheader">
             <button class="c-header-toggler c-class-toggler d-lg-none mfe-auto" type="button" data-target="#sidebar"
-                data-class="c-sidebar-show">
-                <i class="c-icon c-icon-lg icon-menu"></i>
+                    data-class="c-sidebar-show">
+                <span class="icon-menu"></span>
             </button>
-            <a class="c-header-brand d-lg-none" href="<?= $homeUrl ?>">
-                <img src="<?= $logoResponsiveUrl ?>" alt="<?= Yii::$app->name ?>">
+            <a class="c-header-brand d-lg-none" href="<?= Yii::$app->homeUrl ?>">
+                <?php /*
+                <img src="<?= Yii::getAlias('@web/logo-wide.png') ?>" alt="<?= Yii::$app->name ?>">
+                */ ?>
+                <span class="icon-emotsmile"></span>
             </a>
             <button class="c-header-toggler c-class-toggler mfs-3 d-md-down-none" type="button" data-target="#sidebar"
-                data-class="c-sidebar-lg-show" responsive="true">
-                <i class="c-icon c-icon-lg icon-menu"></i>
+                    data-class="c-sidebar-lg-show" responsive="true">
+                <span class="icon-menu"></span>
             </button>
-            <?= \yii\bootstrap4\Nav::widget([
+            <?= Nav::widget([
                 'id' => 'top-menu',
                 'encodeLabels' => false,
-                'options' => ['class' => 'c-header-nav ml-auto mr-4'],
-                'items' => array_merge($this->params['top-menu'], $this->params['user-menu']),
+                'options' => [
+                    'class' => 'c-header-nav ml-auto mr-4',
+                ],
+                'items' => $topMenu,
             ]) ?>
-            <div class="c-subheader px-3">
-                <?= Breadcrumbs::widget([
-                    'options' => ['class' => 'breadcrumb border-0 m-0'],
-                    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-                    'itemTemplate' => "<li class='breadcrumb-item'>{link}</li>\n",
-                    'activeItemTemplate' => "<li class=\"breadcrumb-item active\">{link}</li>\n",
-                    'encodeLabels' => false,
-                ])
-                ?>
-            </div>
+            <?php if (!empty($this->params['breadcrumbs'])) { ?>
+                <div class="c-subheader px-3">
+                    <?= Breadcrumbs::widget([
+                        'options' => ['class' => 'breadcrumb border-0 m-0'],
+                        'links' => $this->params['breadcrumbs'],
+                        'itemTemplate' => "<li class='breadcrumb-item'>{link}</li>\n",
+                        'activeItemTemplate' => "<li class=\"breadcrumb-item active\">{link}</li>\n",
+                        'encodeLabels' => false,
+                    ])
+                    ?>
+                </div>
+            <?php } ?>
         </header>
         <div class="c-body">
             <main class="c-main">
@@ -107,16 +190,10 @@ if (isset($this->params['breadcrumbs']) && file_exists($helpFile)) {
             </main>
             <footer class="c-footer">
                 <div>
-                    <a href="<?= Yii::$app->request->hostInfo ?>"><?= Yii::$app->name ?></a>
-                    <span>&copy; 2018 <?= Yii::t('app', 'All rights reserved') ?>.</span>
+                    <a href="<?= Yii::$app->homeUrl ?>"><?= Yii::$app->name ?></a>
                 </div>
                 <div class="ml-auto">
-                    <?= Yii::t('app', 'By {vendor} with {icon}', [
-                        'vendor' => Html::a('Daxslab', 'http://daxslab.com', ['target' => '_blank']),
-                        'icon' => Html::tag('i', null, [
-                            'class' => 'icon-heart text-danger'
-                        ]),
-                    ]) ?>
+                    <span>&copy; <?= date('Y') ?> <?= Yii::t('app', 'All rights reserved') ?>.</span>
                 </div>
             </footer>
         </div>

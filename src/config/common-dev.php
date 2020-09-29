@@ -1,22 +1,11 @@
 <?php
 
-// Basic configuration, used in web and console applications
+// Settings for developer-mode only
 return [
     'bootstrap' => [
         'gii',
     ],
     'modules' => [
-        'audit' => [
-            'logConfig' => [
-                'levels' => [
-                    'error',
-                    'warning',
-                    'trace',
-                    'profile',
-                    //'info',
-                ],
-            ],
-        ],
         'gii' => [
             'class' => 'yii\gii\Module',
             'layout' => '@app/views/layouts/main',
