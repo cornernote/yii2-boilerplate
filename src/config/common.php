@@ -34,6 +34,17 @@ return [
             'hashCallback' => function ($path) {
                 return sprintf('%x', crc32((is_file($path) ? dirname($path) : $path)));
             },
+            'bundles' => [
+                'yii\bootstrap\BootstrapAsset' => [
+                    'css' => [],
+                ],
+                'yii\bootstrap\BootstrapPluginAsset' => [
+                    'js' => []
+                ],
+                //'yii\web\JqueryAsset' => [
+                //    'js' => []
+                //],
+            ],
         ],
         'authManager' => [
             'class' => 'Da\User\Component\AuthDbManagerComponent',
@@ -162,9 +173,14 @@ return [
     'modules' => [
         'audit' => [
             'class' => 'bedezign\yii2\audit\Audit',
+            'layout' => '@app/views/layouts/main',
             'ignoreActions' => ['audit/*', 'debug/*', 'audit-alert/*'],
             'accessRoles' => ['admin'],
             'accessUsers' => [1],
+            'userIdentifierCallback' => function ($id) {
+                $user = \Da\User\Model\User::findOne($id);
+                return $user ? $user->username : $id;
+            },
             //'logConfig' => ['levels' => ['error', 'warning']],
             // panels config
             //'panels' => [

@@ -1,5 +1,8 @@
 <?php
 
+use bedezign\yii2\audit\Audit;
+use bedezign\yii2\audit\components\Access;
+use bedezign\yii2\audit\models\AuditEntry;
 use cebe\gravatar\Gravatar;
 use yii\bootstrap4\Modal;
 use yii\bootstrap4\Nav;
@@ -72,19 +75,11 @@ if ($user->isGuest) {
             ['label' => 'Admin'],
             [
                 'label' => Yii::t('app', 'Users'),
-                'url' => ['/user/admin/index'],
+                'url' => ['/user'],
             ],
             [
-                'label' => Yii::t('app', 'Roles'),
-                'url' => ['/user/role/index'],
-            ],
-            [
-                'label' => Yii::t('app', 'Permissions'),
-                'url' => ['/user/permission/index'],
-            ],
-            [
-                'label' => Yii::t('app', 'Rules'),
-                'url' => ['/user/rule/index'],
+                'label' => Yii::t('app', 'Audit'),
+                'url' => ['/audit'],
             ],
             ['label' => 'Account'],
             [
@@ -189,11 +184,26 @@ if ($user->isGuest) {
                 </div>
             </main>
             <footer class="c-footer">
-                <div>
-                    <a href="<?= Yii::$app->homeUrl ?>"><?= Yii::$app->name ?></a>
-                </div>
                 <div class="ml-auto">
-                    <span>&copy; <?= date('Y') ?> <?= Yii::t('app', 'All rights reserved') ?>.</span>
+                    <?php
+                    $infos = [];
+
+                    $link = false;
+                    $stats = [
+                        number_format(microtime(true) - YII_BEGIN_TIME, 2) . 's',
+                        number_format(memory_get_peak_usage() / 1024 / 1000, 2) . 'm',
+                    ];
+                    if ($auditEntry = Audit::getInstance()->getEntry()) {
+                        if (Access::checkAccess()) {
+                            $stats[] = Html::a('audit-' . $auditEntry->id, ['/audit/entry/view', 'id' => $auditEntry->id]);
+                        } else {
+                            $stats[] = 'audit-' . $auditEntry->id;
+                        }
+                    }
+                    $infos[] = implode(' | ', $stats);
+
+                    echo Html::tag('span', implode(' :: ', $infos));
+                    ?>
                 </div>
             </footer>
         </div>

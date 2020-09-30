@@ -15,6 +15,7 @@ class AppAsset extends AssetBundle
 
     public $css = [
         'css/yii-coreui.css',
+        'css/glyphicons.css',
         'css/app.css',
     ];
     public $js = [
