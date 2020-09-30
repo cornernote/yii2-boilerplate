@@ -82,7 +82,7 @@ return [
                     'url' => 'php://stdout',
                     'levels' => ['info', 'trace'],
                     'logVars' => [],
-                    'enabled' => YII_DEBUG,
+                    'enabled' => false, //YII_DEBUG,
                 ],
                 [
                     'class' => 'codemix\streamlog\Target',
@@ -136,59 +136,55 @@ return [
         'settings' => [
             'class' => 'pheme\settings\components\Settings',
         ],
-        'user' => [
-            'class' => 'app\components\User',
-            'enableAutoLogin' => true,
-            'loginUrl' => ['/user/security/login'],
-            'identityClass' => 'Da\User\Model\User',
-            'identityCookie' => [
-                'httpOnly' => true,
-                'name' => '_identity',
-                'path' => '/',
-                'domain' => $_ENV['APP_COOKIE_DOMAIN'] ?: null,
-            ],
-        ],
+        //'user' => [
+        //    'class' => 'app\components\User',
+        //    'enableAutoLogin' => true,
+        //    'loginUrl' => ['/user/security/login'],
+        //    'identityClass' => 'Da\User\Model\User',
+        //    'identityCookie' => [
+        //        'httpOnly' => true,
+        //        'name' => '_identity',
+        //        'path' => '/',
+        //        'domain' => $_ENV['APP_COOKIE_DOMAIN'] ?: null,
+        //    ],
+        //],
         'urlManager' => [
             'enablePrettyUrl' => $_ENV['APP_PRETTY_URLS'] ? true : false,
             'showScriptName' => YII_ENV_TEST,
             //'enableDefaultLanguageUrlCode' => true,
             //'baseUrl' => $_ENV['APP_BASE_URL'] ?: '/',
-            'rules'=>[
+            'rules' => [
                 //'login' => 'user/security/login',
                 //'logout' => 'user/security/logout',
             ],
         ],
     ],
     'modules' => [
-        //'audit' => [
-        //    'class' => 'bedezign\yii2\audit\Audit',
-        //    'ignoreActions' => ['audit/*', 'debug/*', 'audit-alert/*'],
-        //    'accessRoles' => ['admin'],
-        //    'userIdentifierCallback' => ['app\models\User', 'userIdentifierCallback'],
-        //    'logConfig' => [
-        //        'levels' => [
-        //            'error',
-        //            'warning',
-        //        ],
-        //    ],
-        //    // panels config
-        //    'panels' => [
-        //        'audit/error',
-        //        'audit/javascript',
-        //        'audit/request' => [
-        //            //'ignoreKeys' => ['SERVER'],
-        //        ],
-        //        'audit/trail',
-        //        'audit/mail',
-        //        //'queue' => [
-        //        //    'class' => 'app\components\audit\panels\QueuePanel',
-        //        //],
-        //        //'task' => [
-        //        //    'class' => 'app\components\audit\panels\TaskPanel',
-        //        //],
-        //    ],
-        //],
-        // in both web and console so we can use command line tools of Da\User like change password/create password
+        'audit' => [
+            'class' => 'bedezign\yii2\audit\Audit',
+            'ignoreActions' => ['audit/*', 'debug/*', 'audit-alert/*'],
+            'accessRoles' => ['admin'],
+            'accessUsers' => [1],
+            //'logConfig' => ['levels' => ['error', 'warning']],
+            // panels config
+            //'panels' => [
+            //    'audit/error',
+            //    'audit/javascript',
+            //    'audit/request' => [
+            //        //'ignoreKeys' => ['SERVER'],
+            //    ],
+            //    'audit/trail',
+            //    'audit/mail',
+            //    //'queue' => [
+            //    //    'class' => 'app\components\audit\panels\QueuePanel',
+            //    //],
+            //    //'task' => [
+            //    //    'class' => 'app\components\audit\panels\TaskPanel',
+            //    //],
+            //],
+        ],
+        // added to common so both web and console can use command line tools
+        // of Da\User like yii user/create
         'user' => [
             'class' => 'Da\User\Module',
             'layout' => '@app/views/layouts/main',

@@ -24,9 +24,9 @@ class User extends \yii\web\User
         if (Yii::$app instanceof \yii\console\Application) {
             return true;
         }
-        if ($this->getIsAdmin()) {
-            return true;
-        }
+        //if ($this->can('admin')) {
+        //    return true;
+        //}
         return parent::can($permissionName, $params, $allowCaching);
     }
 
@@ -42,18 +42,6 @@ class User extends \yii\web\User
             return null;
         }
         return parent::getIdentity($autoRenew);
-    }
-
-    /**
-     * @return bool
-     * @throws \yii\base\InvalidConfigException
-     */
-    public function getIsAdmin()
-    {
-        if (!$this->isGuest && $this->identity->getIsAdmin()) {
-            return true;
-        }
-        return false;
     }
 
 }

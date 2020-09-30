@@ -32,7 +32,7 @@ function debug($var, $name = null, $attributesOnly = true)
         }
         $out = VarDumper::export($var);
     } else {
-        $out = VarDumper::export($var);
+        $out = VarDumper::dumpAsString($var);
     }
     if ($cli) {
         echo $out;
